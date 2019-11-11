@@ -3,7 +3,7 @@
     window.Database = Database;
 
     Database.getDatabase = function getDatabase() {
-        //Задать значения текущей даты и даты 5 лет назад.
+        //Задать значения текущей даты и даты 5 лет назад в формате yyyy-mm-d/dd.
         const today = `${new Date().getFullYear()}-${Number.parseInt(new Date().getMonth()+1)}-${new Date().getDate()}`;
         const firstDay = `${new Date().getFullYear()-5}-${Number.parseInt(new Date().getMonth() + 1)}-${new Date().getDate()}`;
 
@@ -29,8 +29,9 @@
 
                 //! Ф-ция, выстраивающая оси на графике
                 console.log(database);
-                
+                Graph.makeGraph(database);
             })
+        //! Дописать кетч
     };
 
     //Принцип работы такой: сравниваются два числа, если второе начинается на новой неделе, то в массив добавляется объект с последней датой прошлой недели, а также среднее арефметическое коэффициента за неделю.
@@ -39,6 +40,7 @@
         let counter = 0;
         let value = 0;
 
+        //* Попробовать зарефакторить
         arr.reduce((prev, current) => {
             counter++;
             value = value + prev.value;
@@ -72,6 +74,7 @@
 
             return prev = current;
         });
+        //*
 
         return transformed
     }

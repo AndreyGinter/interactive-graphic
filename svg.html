@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Document</title>
+        <style>
+            div {
+                position: relative;
+                max-width: 1200px;
+                height: 411px;
+                margin: 0 auto;
+            }
+
+            svg {
+                height: 100%;
+                display: block;
+                width: 995px;
+                margin: 0 auto;
+            }
+
+            .line {
+                top: 0;
+                left: 0;
+                position: absolute;
+            }
+
+            .grid {
+                stroke: #e5e5e5;
+                stroke-dasharray: 0;
+                stroke-width: 1;
+            }
+
+            .graph .labels.x-labels {
+                text-anchor: middle;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="element">
+            <svg>
+                <path class="graph" stroke-width="2" stroke="#0bb5f6" style="fill:transparent" />
+                <!-- <g class="axis" transform="translate(0,490)">
+                <text y="2" x="0" dy=".71em" style="text-anchor: middle;">2015</text>
+
+                <text y="9" x="0" dy=".71em" style="text-anchor: middle;">2016</text>
+                <text y="9" x="0" dy=".71em" style="text-anchor: middle;">2017</text>
+                <text y="9" x="0" dy=".71em" style="text-anchor: middle;">2018</text>
+                <text y="9" x="0" dy=".71em" style="text-anchor: middle;">2019</text>
+            </g> -->
+                <!--! Код будет изменяться в зависимости от высоты графика -->
+                <g class="grid x-grid" id="xGrid">
+                    <line x1="0" x2="990.6" y1="411" y2="411"></line>
+                </g>
+                <g class="grid x-grid" id="xGrid">
+                    <line x1="0" x2="0" y1="0" y2="411"></line>
+                </g>
+                <!--! координата для года берется в зависимости от точки -->
+                <g class="labels x-labels">
+                    <text x="100" y="400">2015</text>
+                    <text x="246" y="400">2016</text>
+                    <text x="392" y="400">2017</text>
+                    <text x="538" y="400">2018</text>
+                    <text x="684" y="400">2019</text>
+                </g>
+            </svg>
+        </div>
+    </body>
+    <script src="Graph.js"></script>
+    <script src="Database.js"></script>
+    <script src="index.js"></script>
+</html>
