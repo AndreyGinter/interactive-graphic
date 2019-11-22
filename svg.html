@@ -9,7 +9,7 @@
             div {
                 position: relative;
                 max-width: 1200px;
-                height: 411px;
+                height: 435px;
                 margin: 0 auto;
             }
 
@@ -35,13 +35,22 @@
             .graph .labels.x-labels {
                 text-anchor: middle;
             }
+
+            .grid__month {
+                stroke: #e5e5e5;;
+            }
+
+            .grid__text{
+                font-size: 16px;
+                font-weight: 300;    
+            }
         </style>
     </head>
 
     <body>
-        <div class="element">
+        <div class="graph">
             <svg>
-                <path class="graph" stroke-width="2" stroke="#0bb5f6" style="fill:transparent" />
+                <path class="graph__line" stroke-width="2" stroke="#0bb5f6" style="fill:transparent" />
                 <!-- <g class="axis" transform="translate(0,490)">
                 <text y="2" x="0" dy=".71em" style="text-anchor: middle;">2015</text>
 
@@ -58,13 +67,19 @@
                     <line x1="0" x2="0" y1="0" y2="411"></line>
                 </g>
                 <!--! координата для года берется в зависимости от точки -->
-                <g class="labels x-labels">
+                <g class="grid-years">
+
+                </g>
+                <g class="grid-months">
+
+                </g>
+                <!-- <g class="labels x-labels">
                     <text x="100" y="400">2015</text>
                     <text x="246" y="400">2016</text>
                     <text x="392" y="400">2017</text>
                     <text x="538" y="400">2018</text>
                     <text x="684" y="400">2019</text>
-                </g>
+                </g> -->
             </svg>
         </div>
     </body>
