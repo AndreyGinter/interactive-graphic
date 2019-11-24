@@ -4,7 +4,7 @@
 
     const months = document.querySelector('.graph').querySelector('.grid-months')
     const years = document.querySelector('.graph').querySelector('.grid-years')
-    const graphEvents = document.querySelector('.graph').querySelector('.grid-event')
+    const graphEvents = document.querySelector('.graph').querySelector('.events')
 
     Graph.makeGraph = function makeGraph(database) {
         let str = "";
@@ -135,20 +135,26 @@
     function makeEvent(event) {
         const interval = event.interval
         const id = event.id
-        const point = document.querySelector('.graph').querySelector(`[interval='${interval}']`)
+        const point = document.querySelector('.graph').querySelector(`.grid__month[interval='${interval}']`)
         const eventsCount = parseInt(point.getAttribute('eventsCount')) + 1
         point.setAttribute('eventsCount', eventsCount)
 
-        const pointX = point.getAttribute('x1')
-        const pointY = point.getAttribute('y1')
+        const pointX = parseInt(point.getAttribute('x1'))
+        const pointY = parseInt(point.getAttribute('y1'))
 
-        console.log(pointX, pointY)
+        const rect = document.createElement('div')
 
-        const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect')
+        if(eventsCount === 1) {
+            rect.classList.add('graph__rect--first')
+            rect.setAttribute('style', `transform: translate(${pointX}px, ${pointY - 11}px)`)  
+        }
+        else {
+            console.log(eventsCount)
+            rect.setAttribute('style', `transform: translate(${pointX}px, ${(pointY - 11) - (16 * (eventsCount - 1))}px)`)
+            console.log(pointY)
+        }
         rect.classList.add('graph__rect')
-        rect.setAttribute('x', '0')
-        rect.setAttribute('x', '0')
-        rect.setAttribute('transform', `translate(${pointX}, ${pointY-15*eventsCount}) rotate(45 0 0)`)  
+        
         rect.setAttribute('id', `${id}`)
 
         rect.addEventListener('click', openEvent)
