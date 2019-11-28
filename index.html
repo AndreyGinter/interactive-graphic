@@ -1,13 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-        <title>Document</title>
-    </head>
-    <body>
-        <script src="Database.js"></script>
-        <script src="index.js"></script>
-    </body>
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>Document</title>
+	<style>
+		@import url('styles/graph.css');
+
+		body {
+			font-family: 'Roboto';
+		}
+	</style>
+</head>
+
+<body>
+	<div class="graph js-graph">
+		<div class="graph__wrapper js-graph-wrapper">
+			<div class="graph__slider slider">
+				<div class="slider__control slider__control--back js-control-back">
+					<span class="slider__arrow slider__arrow--back"></span>
+					<span class="slider__control-date js-slider-prev-date">December 2018</span>
+					<h5 class="slider__theme js-slider-prev-theme">Vote moved</h5>
+				</div>
+				<div class="slider__content">
+					<span class="slider__date js-slider-date">15 January 2019 </span>
+					<h3 class="slider__title js-slider-title">MPS vote on Brexit deal</h3>
+					<p class="slider__descr js-slider-descr">UK Parliament votes down amendments to the draft Brexit agreement that
+						could have potentially paved way to an extension and a second referendum. Theresa May suffered
+						the heaviest defeat in modern parliamentary history, losing 432 votes to 202.</p>
+				</div>
+				<div class="slider__control slider__control--forward js-control-forward">
+					<span class="slider__arrow slider__arrow--forward"></span>
+					<span class="slider__control-date js-slider-next-date">March 12, 2019</span>
+					<h5 class="slider__theme js-slider-next-theme">Once more with meaning</h5>
+				</div>
+			</div>
+			<svg class="graph__svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+				<path class="graph__line js-graph-line" stroke-width="2" stroke="#0bb5f6" style="fill:transparent" />
+				<g class="graph__axis">
+					<line class="js-graph-y"></line>
+					<line class="js-graph-x"></line>
+				</g>
+				<g class="js-graph-years"></g>
+				<g class="js-graph-months"></g>
+			</svg>
+			<div class="graph__events js-graph-events"></div>
+		</div>
+	</div>
+</body>
+<script src="js/Graph.js"></script>
+<script src="js/Database.js"></script>
+<script src="js/index.js"></script>
+
 </html>

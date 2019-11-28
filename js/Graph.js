@@ -2,46 +2,39 @@
     const Graph = {};
     window.Graph = Graph;
 
-    const months = document.querySelector('.graph').querySelector('.grid-months')
-    const years = document.querySelector('.graph').querySelector('.grid-years')
-    const graphEvents = document.querySelector('.graph').querySelector('.events')
-
+    const graph = document.querySelector('.js-graph')
+    const container = graph.querySelector('.js-graph-wrapper')
+    const svg = graph.querySelector('.js-graph-svg')
+    const graphEvents = graph.querySelector('.js-graph-events')
+    const line = graph.querySelector('.js-graph-line')
+    const months = graph.querySelector('.js-graph-months')
+    const years = graph.querySelector('.js-graph-years')
+    const axisY = graph.querySelector('.js-graph-y')
+    const axisX = graph.querySelector('.js-graph-x')
+    const active = 'graph__event--active'
+    
     Graph.makeGraph = function makeGraph(database) {
         let str = "";
-        let i = 1;
+        let i = 0;
 
-
-        // for (const key in database) {
-        //     console.log(database[key].date.split('-'));
-        //     /*! Первое - масштаб. Расстояние между двумя соседними точками. Координата х. 
-        //     Второе - координата у. Первое число увеличивает коэффициент юсд к фунту. 
-        //     Т.к. значение коэффициента и разница между несколько коэффициентами мала, то надо увеличить ее умножив все числа. 
-        //     Второе число - это положение графика внутри свг. Зависит от размера холста.
-        //     */
-        //     if (i == 1) {
-        //         str = `${str} M ${i * 3.81}${-database[key].value * 950 + 1510} S`;
-        //     } else {
-        //         str = `${str} ${i * 3.81} ${-database[key].value  * 950 + 1510},`;
-        //     }
-
-        //     console.log(database[key].date.split('-')[1])
-
-        //     i++;
-        // }
-        //перебор массива 
         database.reduce((last, curr) => {
+            const coef = container.offsetWidth/database.length;
             //Если не начало массива
             if (last) {
                 if (curr.date.split('-')[1] !== last.date.split('-')[1]) {
-                    months.insertAdjacentElement('beforeend', makeText(i * 3.81, curr.date.split('-')))
+                    months.insertAdjacentElement('beforeend', makeText(i * coef, curr.date.split('-')))
                 }
             }
 
             //Если первый элемент, то добавить атрибуты к path
-            if (i === 1) {
-                str = `${str} M ${i * 3.81}${-curr.value * 950 + 1510} S`;
+            //     Второе - координата у. Первое число увеличивает коэффициент юсд к фунту. 
+            //     Т.к. значение коэффициента и разница между несколько коэффициентами мала, то надо увеличить ее умножив все числа. 
+            //Второе число - это положение графика внутри свг. Зависит от размера холста.
+        //перебор массива 
+            if (i === 0) {
+                str = `${str} M ${coef} ${-curr.value * 950 + 1510} S`;
             } else {
-                str = `${str} ${i * 3.81} ${-curr.value  * 950 + 1510},`;
+                str = `${str} ${i * (coef)} ${-curr.value  * 950 + 1510},`;
             }
 
             //!Решить проблему первого месяца. Не отслеживается
@@ -52,16 +45,33 @@
 
         }, undefined)
 
-        document.querySelector(".graph__line").setAttribute("d", str);
 
+        line.setAttribute("d", str);
+
+        makeAxis()
         setEvents()
     };
+
+    function makeAxis() {
+        const width = container.offsetWidth
+        const height = container.offsetHeight
+
+        axisX.setAttribute('x1', '0')
+        axisX.setAttribute('x2', width)
+        axisX.setAttribute('y1', height - 24)
+        axisX.setAttribute('y2', height - 24)
+        axisY.setAttribute('x1', '0')
+        axisY.setAttribute('x2', '0')
+        axisY.setAttribute('y1', '0')
+        axisY.setAttribute('y2', height - 24)
+    }
+
     //! Создать переменные для элементов массива
     //Создать засечки 
     function makeText(i, month) {
         const dash = document.createElementNS('http://www.w3.org/2000/svg', 'line')
 
-        dash.classList.add('grid__month')
+        dash.classList.add('graph__dash')
         dash.setAttribute('x1', i)
         dash.setAttribute('x2', i)
         dash.setAttribute('eventsCount', 0)
@@ -102,11 +112,11 @@
 
         //Сделать более грамотное изменение
         if(typeof year === 'number') {
-            text.classList.add('grid__text--year')
+            text.classList.add('graph__text--year')
             text.setAttribute('y', 435)
         }
         else {
-            text.classList.add('grid__text--month')
+            text.classList.add('graph__text--month')
             text.setAttribute('y', 432)
         } 
         text.setAttribute('x', i)
@@ -116,17 +126,19 @@
         return text
     }
 
+    //Добавить событие на график
     function setEvents() {
-        const eventsList = fetch('./events.json')
+        const eventsList = fetch('json/events.json')
         eventsList.then(response => response.json())
             .then(events => {
-                //Объявлять за пределами этой функции. вверху
                 const eventsDatabase = JSON.parse(JSON.stringify(events))
                 window.eventsDatabase = eventsDatabase
 
-                for(const event of events) {          
-                    graphEvents.insertAdjacentElement('beforeend', makeEvent(event))
+                for(const item of events) {          
+                    graphEvents.insertAdjacentElement('beforeend', makeEvent(item))
                 }
+
+                makeLastEventActive()
             })
     }
 
@@ -135,7 +147,7 @@
     function makeEvent(event) {
         const interval = event.interval
         const id = event.id
-        const point = document.querySelector('.graph').querySelector(`.grid__month[interval='${interval}']`)
+        const point = graph.querySelector(`.graph__dash[interval='${interval}']`)
         const eventsCount = parseInt(point.getAttribute('eventsCount')) + 1
         point.setAttribute('eventsCount', eventsCount)
 
@@ -144,28 +156,36 @@
 
         const rect = document.createElement('div')
 
-        if(eventsCount === 1) {
-            rect.classList.add('graph__rect--first')
-            rect.setAttribute('style', `transform: translate(${pointX}px, ${pointY - 11}px)`)  
+        if (eventsCount === 1) {
+            rect.classList.add('graph__event--first')
+            rect.setAttribute('style', `transform: translate(${pointX - 5}px, ${pointY - 12}px)`)  
+        } else {
+            rect.setAttribute('style', `transform: translate(${pointX - 5}px, ${(pointY - 12) - (16 * (eventsCount - 1))}px)`)
         }
-        else {
-            console.log(eventsCount)
-            rect.setAttribute('style', `transform: translate(${pointX}px, ${(pointY - 11) - (16 * (eventsCount - 1))}px)`)
-            console.log(pointY)
-        }
-        rect.classList.add('graph__rect')
-        
-        rect.setAttribute('id', `${id}`)
 
+        rect.classList.add('graph__event')      
+        rect.setAttribute('event-id', `${id}`)
         rect.addEventListener('click', openEvent)
 
         return rect
     }
 
+    function makeLastEventActive() {
+        const eventsArr = graph.querySelectorAll('.graph__event')
+        eventsArr[eventsArr.length - 1].classList.add(active)
+    }
+
     function openEvent(){
-        const id = this.getAttribute('id')
+        const id = this.getAttribute('event-id')
+
+        changeActiveEvent(this)
 
         const event = eventsDatabase.find(elem => elem.id === id)
         
+    }
+
+    function changeActiveEvent(current) {
+        graph.querySelector('.graph__event--active').classList.remove(active)
+        current.classList.add(active)
     }
 }());

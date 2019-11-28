@@ -1,0 +1,157 @@
+.graph {
+    &__wrapper {
+        position: relative;
+
+        margin: auto;
+        width: 1000px;
+        height: 435px;
+    }
+
+    &__svg {
+        width: 100%;
+        height: 100%;
+    }
+
+    &__slider {
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    &__events {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+    }
+
+    &__axis {
+        stroke: #e5e5e5;
+        stroke-dasharray: 0;
+        stroke-width: 1;
+        text-anchor: middle;
+    }
+
+    &__dash {
+        stroke: #e5e5e5;
+    }
+
+    &__text {
+        &--year {
+            fill: #000;
+            font-size: 16px;
+            font-weight: 300;
+        }
+
+        &--month {
+            fill: #c8c9d2;
+            font-size: 12px;
+            font-weight: 300;
+        }
+    }
+
+    &__event {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        cursor: pointer;
+
+        &:not(.graph__event--first)::before {
+            content: '';
+            height: 0;
+        }
+
+        &::after {
+            content: '';
+            z-index: 5;
+            left: -1px;
+            top: -1px;
+            position: absolute;
+
+            width: 100%;
+            height: 100%;
+
+            border-radius: 3px;
+            background: #1abaf7;
+            transform: rotate(45deg);
+            border: 1px solid white;
+        }
+
+        &::before {
+            content: '';
+            z-index: 1;
+            left: 4px;
+            bottom: 11px;
+            position: absolute;
+
+            width: 2px;
+            height: 52px;
+
+            background: linear-gradient(to top, #c1eaf9, #fff 99%);
+        }
+
+        &:hover:not(.graph__event--active) {
+            &::after {
+                background: #fff;
+                border-color: #1abaf7;
+            }
+        }
+
+        &.graph__event--active {
+            &::after {
+                background: #80ba2f;
+                transition: background 0.2s;
+            }
+            &::before {
+                background: linear-gradient(to top, #d6e7be, #fff 95%);
+                height: 200px;
+                transition: background 0.2s, height 0.2s;
+            }
+
+            &:hover::after {
+                border-color: #80ba2f;
+            }
+        }
+
+    }
+}
+
+.slider {
+    width: 100%;
+    height: 100%;
+
+    &__control {
+        &--back {
+
+        }
+
+        &--forward {
+
+        }
+    }
+
+    &__arrow {
+        &--back {
+
+        }
+
+        &--forward {
+            
+        }
+    }
+
+    &__theme {
+
+    }
+
+    &__content {
+
+    }
+
+    &__date {}
+    &__descr {
+        
+    }
+
+}
