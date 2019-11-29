@@ -159,7 +159,12 @@
     function setEvent(event) {
         const interval = event.interval
         const id = event.id
-        const point = graph.querySelector(`.graph__dash[interval='${interval}']`)
+        let point = graph.querySelector(`.graph__dash[interval='${interval}']`)
+
+        if (!point) {
+            point = setEventInIntervalDate(interval)
+        }
+
         const eventsCount = parseInt(point.getAttribute('eventsCount')) + 1
         point.setAttribute('eventsCount', eventsCount)
 
@@ -200,6 +205,42 @@
         changeActiveEvent(this)
         Slider.changeEvent(event, this)
     }
+    //! Зарефакторить
+    function setEventInIntervalDate(interval) {
+        const splitted = interval.split('-')
+        const date = parseInt(splitted.join(''))
+        const arrayOfMatchedDashes = []
+        const arrayOfDashes = document.querySelectorAll('.graph__dash')
+        let i = 0
+
+        while (true) {
+            const searchingInterval = [splitted[0], parseInt(splitted[1])+i].join('-')
+
+            if(searchingInterval[1] === 13) {
+                searchingInterval[1] = 1
+            }
+
+            for (const elem of arrayOfDashes) {
+                const elemInterval = elem.getAttribute('interval').split('-')
+                const matchedInterval = [elemInterval[0], elemInterval[1]].join('-')
+
+                if (searchingInterval === matchedInterval) {
+                    arrayOfMatchedDashes.push(elem)
+                }
+            }
+
+            for (const elem of arrayOfMatchedDashes) {
+                const elemInterval = parseInt(elem.getAttribute('interval').split('-').join(''))
+
+                if (elemInterval > date) {
+                    return elem
+                }
+            }
+
+            i++
+        }
+    }
+
 
     function changeActiveEvent(current) {
         graph.querySelector('.graph__event--active').classList.remove(active)

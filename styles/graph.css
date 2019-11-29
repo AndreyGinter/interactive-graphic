@@ -63,6 +63,10 @@
   cursor: pointer;
 }
 
+.graph__event:not(.graph__event--first) {
+  z-index: 1000;
+}
+
 .graph__event:not(.graph__event--first)::before {
   content: '';
   height: 0;
@@ -101,7 +105,7 @@
 }
 
 .graph__event.graph__event--active {
-  z-index: 9999;
+  z-index: 999;
 }
 
 .graph__event.graph__event--active::after {
