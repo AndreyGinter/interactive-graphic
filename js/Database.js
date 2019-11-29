@@ -78,7 +78,7 @@
         return transformed
     }
 
-    //Сравнение дат, чтобы узнать в какой день заканчивается биржевая неделя
+    //Сравнение дат, чтобы узнать в какой день заканчивается биржевая неделя. Проверяется по сравнению дня недели.
     const compareDate = (prev, current) => {
         const date = new Date(current);
         const prevDate = new Date(prev);

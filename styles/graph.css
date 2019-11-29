@@ -1,24 +1,33 @@
+.graph {
+  padding-top: 100px;
+}
+
 .graph__wrapper {
   position: relative;
   margin: auto;
   width: 1000px;
-  height: 435px;
+  height: 442px;
 }
 
 .graph__svg {
+  position: relative;
+  z-index: 6;
+  pointer-events: none;
   width: 100%;
   height: 100%;
 }
 
 .graph__slider {
   position: absolute;
-  left: 0;
+  z-index: 4;
+  left: -10%;
   top: 0;
 }
 
 .graph__events {
   position: absolute;
-  width: 100%;
+  z-index: 5;
+  width: 50%;
   height: 100%;
   left: 0;
   top: 0;
@@ -31,7 +40,7 @@
   text-anchor: middle;
 }
 
-.graph__dash {
+.graph__dash--color {
   stroke: #e5e5e5;
 }
 
@@ -49,8 +58,8 @@
 
 .graph__event {
   position: absolute;
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
   cursor: pointer;
 }
 
@@ -67,7 +76,7 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  border-radius: 3px;
+  border-radius: 4px;
   background: #1abaf7;
   -webkit-transform: rotate(45deg);
           transform: rotate(45deg);
@@ -77,11 +86,11 @@
 .graph__event::before {
   content: '';
   z-index: 1;
-  left: 4px;
-  bottom: 11px;
+  left: 3px;
+  bottom: 0;
   position: absolute;
   width: 2px;
-  height: 52px;
+  height: 55px;
   background: -webkit-gradient(linear, left bottom, left top, from(#c1eaf9), color-stop(99%, #fff));
   background: linear-gradient(to top, #c1eaf9, #fff 99%);
 }
@@ -89,6 +98,10 @@
 .graph__event:hover:not(.graph__event--active)::after {
   background: #fff;
   border-color: #1abaf7;
+}
+
+.graph__event.graph__event--active {
+  z-index: 9999;
 }
 
 .graph__event.graph__event--active::after {
@@ -101,16 +114,131 @@
   background: -webkit-gradient(linear, left bottom, left top, from(#d6e7be), color-stop(95%, #fff));
   background: linear-gradient(to top, #d6e7be, #fff 95%);
   height: 200px;
-  -webkit-transition: background 0.2s, height 0.2s;
-  transition: background 0.2s, height 0.2s;
+  -webkit-transition: background 0.2s, height 0.3s;
+  transition: background 0.2s, height 0.3s;
 }
 
 .graph__event.graph__event--active:hover::after {
   border-color: #80ba2f;
 }
 
+.margin-left {
+  margin-left: auto;
+}
+
+.js-slider-animate {
+  opacity: 1;
+  -webkit-transition: opacity ease-in-out .2s;
+  transition: opacity ease-in-out .2s;
+}
+
+.js-slider-animate-on {
+  opacity: 0;
+}
+
 .slider {
-  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 120%;
   height: 100%;
+}
+
+.slider__control {
+  -ms-flex-preferred-size: 10%;
+      flex-basis: 10%;
+  cursor: pointer;
+  outline: none;
+}
+
+.slider__control--forward {
+  text-align: right;
+}
+
+.slider__control:hover .slider__arrow {
+  border-color: #0bb8f9;
+}
+
+.slider__control:hover .slider__control-date, .slider__control:hover .slider__theme {
+  color: #0bb8f9;
+  opacity: 1;
+}
+
+.slider__control--unavailable {
+  visibility: hidden;
+  cursor: none;
+  pointer-events: none;
+}
+
+.slider__content {
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+}
+
+.slider__container {
+  max-width: 480px;
+  margin-left: auto;
+  text-align: right;
+}
+
+.slider__arrow {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.slider__arrow--back {
+  border-bottom: 2px solid;
+  border-left: 2px solid;
+  border-color: #1378bf;
+}
+
+.slider__arrow--forward {
+  margin-left: auto;
+  border-top: 2px solid;
+  border-right: 2px solid;
+  border-color: #1378bf;
+}
+
+.slider__control-date, .slider__theme {
+  display: block;
+  max-width: 80%;
+  font-size: 12px;
+  line-height: 1.25;
+  font-weight: 400;
+  color: #000;
+  opacity: 0.3;
+}
+
+.slider__control-date {
+  margin-top: 23px;
+}
+
+.slider__theme {
+  margin-top: 10px;
+}
+
+.slider__title {
+  margin-bottom: 17px;
+  margin-top: 5px;
+  font-size: 30px;
+  line-height: 1.33333333333;
+  font-weight: 300;
+  color: #000;
+}
+
+.slider__date {
+  font-size: 16px;
+  line-height: 1.25;
+  font-weight: 300;
+  color: #000;
+}
+
+.slider__descr {
+  font-size: 14px;
+  line-height: 1.42857142857;
+  color: #000;
 }
 /*# sourceMappingURL=graph.css.map */
