@@ -6,11 +6,11 @@
   position: relative;
   margin: auto;
   width: 1000px;
-  height: 442px;
+  padding-bottom: calc(100% / 2.26244343891);
 }
 
 .graph__svg {
-  position: relative;
+  position: absolute;
   z-index: 6;
   pointer-events: none;
   width: 100%;
