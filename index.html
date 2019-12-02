@@ -21,7 +21,7 @@
             <div class="graph__slider slider js-graph-slider">
                 <div class="slider__control slider__control--back js-control-prev">
                     <span class="slider__arrow slider__arrow--back"></span>
-                    <div class="js-slider-animate">
+                    <div class="slider__info js-slider-animate">
                         <span class="slider__control-date js-slider-prev-date"></span>
                         <h5 class="slider__theme js-slider-prev-theme"></h5>
                     </div>
@@ -35,23 +35,38 @@
                 </div>
                 <div class="slider__control slider__control--forward js-control-next">
                     <span class="slider__arrow slider__arrow--forward"></span>
-                    <div class="js-slider-animate">
+                    <div class="slider__info js-slider-animate">
                         <span class="slider__control-date js-slider-next-date margin-left"></span>
                         <h5 class="slider__theme js-slider-next-theme margin-left"></h5>
                     </div>
                 </div>
             </div>
-            <svg class="graph__svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                <path class="graph__line js-graph-line" />
-                <g class="graph__axis">
-                    <line class="js-graph-x"></line>
-                </g>
-                <g class="js-graph-years"></g>
-                <g class="js-graph-months"></g>
-            </svg>
-            <svg class=" graph__svg graph__svg--background" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                <path class="graph__background js-graph-background"></path></svg>
-            <div class="graph__events js-graph-events"></div>
+            <div class="graph__overflow js-graph-scroll">
+                <div class="graph__container js-graph-container">
+                    <svg class="graph__svg" xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <path class="graph__line js-graph-line" />
+                        <g class="graph__axis">
+                            <line class="js-graph-x"></line>
+                        </g>
+                        <g class="js-graph-years"></g>
+                        <g class="js-graph-months"></g>
+                    </svg>
+                    <svg class=" graph__svg graph__svg--background" xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <linearGradient x1="0%" y1="0%" id="graph__gradient" x2="0%" y2="100%">          
+                            <stop offset="15%" stop-color="#ffffff"/>
+                            <stop offset="30%" stop-color="#fefefe"/>
+                            <stop offset="45%" stop-color="#fdfdfd" />
+                            <stop offset="55%" stop-color="#fcfcfc"/>
+                            <stop offset="75%" stop-color="#fbfbfb" />
+                            <stop offset="90%" stop-color="#fafafa" />
+                        </linearGradient>
+                        <path class="graph__background js-graph-background"></path>
+                    </svg>
+                    <div class="graph__events js-graph-events"></div>
+                </div>
+            </div>
         </div>
     </div>
 </body>

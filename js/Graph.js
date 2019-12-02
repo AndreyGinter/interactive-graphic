@@ -3,7 +3,8 @@
     window.Graph = Graph
 
     const graph = document.querySelector('.js-graph')
-    const container = graph.querySelector('.js-graph-wrapper')
+    const container = graph.querySelector('.js-graph-container')
+    const scroll = graph.querySelector('.js-graph-scroll')
     const graphEvents = graph.querySelector('.js-graph-events')
     const line = graph.querySelector('.js-graph-line')
     const background = graph.querySelector('.js-graph-background')
@@ -11,7 +12,8 @@
     const years = graph.querySelector('.js-graph-years')
     const axisX = graph.querySelector('.js-graph-x')
     const active = 'graph__event--active'
-    const eventsLink = 'json/events.json'
+    const eventsLink = '../json/events.json'
+    const windowWidth = document.documentElement.clientWidth
     const width = container.offsetWidth
     const height = container.offsetHeight
 
@@ -21,7 +23,7 @@
         let i = 0
 
         database.reduce((last, curr) => {
-            const coef = container.offsetWidth / database.length;
+            const coef = width / database.length;
             //Если не начало массива
             if (last) {
                 if (curr.date.split('-')[1] !== last.date.split('-')[1]) {
@@ -53,12 +55,16 @@
 
         }, undefined)
 
-        backgroundStr = `${backgroundStr} 996.1685823754789 402, 996.1685823754789 403, 3.8314176245210727 403, 3.8314176245210727 403 Z`
+        backgroundStr = `${backgroundStr} 996.1685823754789 405, 996.1685823754789 405, 3.8314176245210727 405, 3.8314176245210727 405 Z`
         line.setAttribute("d", str);
         background.setAttribute("d", backgroundStr)
 
         makeAxis()
         getEvents()
+
+        if (document.documentElement.clientWidth < 1024) {
+            changeGraphViewPosition()
+        }
     };
 
     function makeAxis() {
@@ -208,6 +214,7 @@
         const id = this.getAttribute('event-id')
         const event = eventsDatabase.find(elem => elem.id === id)
 
+        console.log(document.querySelector('.graph__overflow').scrollLeft, document.body.clientWidth);
         changeActiveEvent(this)
         Slider.changeEvent(event, this)
     }
@@ -220,9 +227,9 @@
         let i = 0
 
         while (true) {
-            const searchingInterval = [splitted[0], parseInt(splitted[1])+i].join('-')
+            const searchingInterval = [splitted[0], parseInt(splitted[1]) + i].join('-')
 
-            if(searchingInterval[1] === 13) {
+            if (searchingInterval[1] === 13) {
                 searchingInterval[1] = 1
             }
 
@@ -247,6 +254,9 @@
         }
     }
 
+    function changeGraphViewPosition() {
+        scroll.scrollLeft = width - windowWidth
+    }
 
     function changeActiveEvent(current) {
         graph.querySelector('.graph__event--active').classList.remove(active)
