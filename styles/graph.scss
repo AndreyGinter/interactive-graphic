@@ -6,7 +6,7 @@
 
         margin: auto;
         width: 1000px;
-        padding-bottom: calc(100% / 2.26244343891);
+        height: 430px;
     }
 
     &__svg {
@@ -16,6 +16,10 @@
 
         width: 100%;
         height: 100%;
+
+        &--background {
+            z-index: 5;
+        }
     }
 
     &__slider {
@@ -42,6 +46,18 @@
         text-anchor: middle;
     }
 
+    &__line {
+        stroke-width: 2;
+        stroke: #0bb5f6;
+        fill: transparent;
+    }
+
+    &__background {
+        stroke: transparent;
+        stroke-width: 1;
+        fill: #fcfcfc;
+    }
+
     &__dash--color {
         stroke: #e5e5e5;
     }
@@ -61,14 +77,17 @@
     }
 
     &__event {
+        z-index: 4;
         position: absolute;
         width: 8px;
         height: 8px;
         cursor: pointer;
 
+        &--first {
+            z-index: 1;
+        }
+
         &:not(.graph__event--first) {
-            z-index: 1000;
-            
             &::before {
                 content: '';
                 height: 0;
@@ -78,7 +97,7 @@
 
         &::after {
             content: '';
-            z-index: 5;
+            z-index: 4;
             left: -1px;
             top: -1px;
             position: absolute;
@@ -105,20 +124,29 @@
             background: linear-gradient(to top, #c1eaf9, #fff 99%);
         }
 
-        &:hover:not(.graph__event--active) {
-            &::after {
-                background: #fff;
-                border-color: #1abaf7;
+        &:hover {
+            z-index: 3;
+
+            &:not(.graph__event--active) {
+                &::after {
+                    background: #fff;
+                    border-color: #1abaf7;
+                }
             }
         }
 
         &.graph__event--active {
-            z-index: 999;
+            z-index: 2;
+
+            &:not(.graph__event--first) {
+                z-index: 7;
+            }
 
             &::after {
                 background: #80ba2f;
                 transition: background 0.2s;
             }
+
             &::before {
                 background: linear-gradient(to top, #d6e7be, #fff 95%);
                 height: 200px;
@@ -140,10 +168,10 @@
 .js-slider-animate {
     opacity: 1;
     transition: opacity ease-in-out .2s;
-    
+
     &-on {
         opacity: 0;
-        
+
     }
 }
 
@@ -167,7 +195,8 @@
                 border-color: #0bb8f9;
             }
 
-            .slider__control-date,  .slider__theme {
+            .slider__control-date,
+            .slider__theme {
                 color: #0bb8f9;
                 opacity: 1;
             }
@@ -197,7 +226,7 @@
         height: 12px;
 
         transform: rotate(45deg);
-        
+
 
         &--back {
             border-bottom: 2px solid;
@@ -213,10 +242,11 @@
             border-color: #1378bf;
         }
 
-        
+
     }
 
-    &__control-date,  &__theme {
+    &__control-date,
+    &__theme {
         display: block;
         max-width: 80%;
 
@@ -251,6 +281,7 @@
         font-weight: 300;
         color: #000;
     }
+
     &__descr {
         font-size: 14px;
         line-height: 1.42857142857;

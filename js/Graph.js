@@ -6,6 +6,7 @@
     const container = graph.querySelector('.js-graph-wrapper')
     const graphEvents = graph.querySelector('.js-graph-events')
     const line = graph.querySelector('.js-graph-line')
+    const background = graph.querySelector('.js-graph-background')
     const months = graph.querySelector('.js-graph-months')
     const years = graph.querySelector('.js-graph-years')
     const axisX = graph.querySelector('.js-graph-x')
@@ -16,6 +17,7 @@
 
     Graph.makeGraph = function makeGraph(database) {
         let str = ""
+        let backgroundStr = ""
         let i = 0
 
         database.reduce((last, curr) => {
@@ -36,8 +38,11 @@
             //перебор массива 
             if (i === 0) {
                 str = `${str} M ${coef} ${-curr.value * 950 + 1530} S`;
+                backgroundStr = `${backgroundStr} M ${coef} ${-curr.value * 950 + 1530} S`;
+
             } else {
                 str = `${str} ${i * (coef)} ${-curr.value  * 950 + 1530},`;
+                backgroundStr = `${backgroundStr} ${i * (coef)} ${-curr.value  * 950 + 1530},`;
             }
 
             //!Решить проблему первого месяца. Не отслеживается
@@ -48,8 +53,9 @@
 
         }, undefined)
 
-
+        backgroundStr = `${backgroundStr} 996.1685823754789 402, 996.1685823754789 403, 3.8314176245210727 403, 3.8314176245210727 403 Z`
         line.setAttribute("d", str);
+        background.setAttribute("d", backgroundStr)
 
         makeAxis()
         getEvents()
