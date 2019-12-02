@@ -11,7 +11,7 @@
     const years = graph.querySelector('.js-graph-years')
     const axisX = graph.querySelector('.js-graph-x')
     const active = 'graph__event--active'
-    const eventsLink = 'json/events.json'
+    const eventsLink = '/uploads/pages/promo/brexit/json/events.json'
     const width = container.offsetWidth
     const height = container.offsetHeight
 
