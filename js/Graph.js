@@ -21,6 +21,8 @@
         let str = ""
         let backgroundStr = ""
         let i = 0
+        let lastValue
+        let firstValue
 
         database.reduce((last, curr) => {
             const coef = width / database.length;
@@ -47,7 +49,10 @@
                 backgroundStr = `${backgroundStr} ${i * (coef)} ${-curr.value  * 950 + 1530},`;
             }
 
-            //!Решить проблему первого месяца. Не отслеживается
+            if(i === database.length -2) {
+                firstValue = coef
+                lastValue = i * (coef)
+            }
 
             i++
 
@@ -55,7 +60,7 @@
 
         }, undefined)
 
-        backgroundStr = `${backgroundStr} 996.1685823754789 405, 996.1685823754789 405, 3.8314176245210727 405, 3.8314176245210727 405 Z`
+        backgroundStr = `${backgroundStr} ${lastValue}, 405 L ${firstValue} 405 Z`
         line.setAttribute("d", str);
         background.setAttribute("d", backgroundStr)
 
