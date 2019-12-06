@@ -60,7 +60,7 @@
 
         }, undefined)
 
-        backgroundStr = `${backgroundStr} ${lastValue}, 405 L ${firstValue} 405 Z`
+        backgroundStr = `${backgroundStr} ${lastValue} ${lastValue} 405 L ${firstValue} 405 Z`
         line.setAttribute("d", str);
         background.setAttribute("d", backgroundStr)
 
@@ -163,6 +163,8 @@
                 const eventsDatabase = JSON.parse(JSON.stringify(events))
                 eventsDatabase.sort((a, b) => sortEventDatabase(a, b))
                 window.eventsDatabase = eventsDatabase
+
+                console.log(eventsDatabase)
 
                 for (const item of eventsDatabase) {
                     graphEvents.insertAdjacentElement('beforeend', setEvent(item))
@@ -269,6 +271,8 @@
     }
 
     function sortEventDatabase(a, b) {
-        return a.interval.split('-').join('') - b.interval.split('-').join('')
+        for (let i = 0; i < a.interval.split('-').length; i++) {
+                return a.interval.split('-')[i] - b.interval.split('-')[i]
+        }
     }
 }());

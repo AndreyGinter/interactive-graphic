@@ -1,65 +1,110 @@
 [
 	{
 		"id": "1",
-		"interval": "2019-1-18",
-		"day": "18",
-		"month": "January",
-		"year": "2019",
-		"title": "MPS vote on Brexit deal",
-		"descr": "UK Parliament votes down amendments to the draft Brexit agreement that could have potentially paved way to an extension and a second referendum. Theresa May suffered the heaviest defeat in modern parliamentary history, losing 432 votes to 202."
+		"interval": "2015-5-8",
+		"day": "8",
+		"month": "мая",
+		"year": "2015",
+		"title": "Дэвид Кэмерон выигрывает перевыборы",
+		"descr": "Дэвид Кэмерон (David Cameron) выиграл перевыборы и в своей речи выразил твёрдое намерение провести референдум по вопросу членства Великобритании в Евросоюзе. Спад политической неопределённости вернул спрос на Фунт и пара EURGBP развернулась от области 0,7500."
 	},
 	{
 		"id": "2",
-		"interval": "2017-8-4",
-		"day": "4",
-		"month": "August",
-		"year": "2017",
-		"title": "MPS vote on Brexit deal",
-		"descr": "UK Parliament votes down amendments to the draft Brexit agreement that could have potentially paved way to an extension and a second referendum. Theresa May suffered the heaviest defeat in modern parliamentary history, losing 432 votes to 202."
+		"interval": "2016-2-22",
+		"day": "22",
+		"month": "февраля",
+		"year": "2016",
+		"title": "Премьер-министр делает заявление в Палате общин",
+		"descr": "Премьер-министр выступил с заявлением в Палате общин по особому статусу Великобритании в Евросоюзе и объявил о назначении референдума по выходу страны из состава альянса на 23 июня 2016 года. Учитывая, что любые дискуссии и обсуждения потенциального референдума оказывали серьёзное давление на Фунт с конца 2015 года, объявление о дате его проведения вызвали масштабные распродажи британской валюты."
 	},
 	{
 		"id": "3",
-		"interval": "2019-1-11",
-		"day": "11",
-		"month": "January",
-		"year": "2019",
-		"title": "MPS!!!!!!! vote on Brexit deal",
-		"descr": "UK Parliament votes down amendments to the draft Brexit agreement that could have potentially paved way to an extension and a second referendum. Theresa May suffered the heaviest defeat in modern parliamentary history, losing 432 votes to 202."
+		"interval": "2016-6-23",
+		"day": "23",
+		"month": "июня",
+		"year": "2016",
+		"title": "Великобритания голосует за выход из Евросоюза",
+		"descr": "В Великобритании проводится народный референдум по вопросу отделения от ЕС и голосующие &quot;за&quot; побеждают голосующих &quot;против&quot; с преимуществом в 1,3 миллиона голосов (51,9% против 48,1%). Дэвид Кэмерон (David Cameron), премьер-министр страны, объявляет о своей отставке. В последующие 24 часа Фунт &quot;рухнул&quot; на 8% против Евро и на 10% к Доллару США"
 	},
 	{
 		"id": "4",
-		"interval": "2019-11-28",
-		"day": "28",
-		"month": "November",
-		"year": "2019",
-		"title": "MPS vote on Brexit deal",
-		"descr": "UK Parliament votes down amendments to the draft Brexit agreement that could have potentially paved way to an extension and a second referendum. Theresa May suffered the heaviest defeat in modern parliamentary history, losing 432 votes to 202."
+		"interval": "2016-7-13",
+		"day": "13",
+		"month": "июля",
+		"year": "2016",
+		"title": "Тереза Мэй становится новым премьер-министром",
+		"descr": "Тереза Мэй (Theresa May), кандидат от Консервативной партии и министр внутренних дел, становится новым лидером партии и премьер-министром Великобритании."
 	},
 	{
 		"id": "5",
-		"interval": "2019-1-11",
-		"day": "11",
-		"month": "January",
-		"year": "2019",
-		"title": "MPS!!!!!!! vote on Brexit deal",
-		"descr": "UK Parliament votes down amendments to the draft Brexit agreement that could have potentially paved way to an extension and a second referendum. Theresa May suffered the heaviest defeat in modern parliamentary history, losing 432 votes to 202."
+		"interval": "2016-8-13",
+		"day": "13",
+		"month": "августа",
+		"year": "2016",
+		"title": "Финансирование Евросоюза",
+		"descr": "Канцлер Филип Хэммонд (Philip Hammond) гарантирует финансирование Евросоюза даже после выхода Великобритании из альянса. В последующие дни пара EURGBP перешла к снижению, а FTSE 100 оказался под давлением."
 	},
 	{
 		"id": "6",
-		"interval": "2017-8-2",
-		"day": "2",
-		"month": "August",
-		"year": "2017",
-		"title": "MPS vote on Brexit deal",
-		"descr": "UK Parliament votes down amendments to the draft Brexit agreement that could have potentially paved way to an extension and a second referendum. Theresa May suffered the heaviest defeat in modern parliamentary history, losing 432 votes to 202."
+		"interval": "2016-9-8",
+		"day": "8",
+		"month": "сентября",
+		"year": "2016",
+		"title": "Ирландский вопрос",
+		"descr": "Дэвид Дэвис (David Davis) настаивает на том, что Ирландии не придётся выбирать между всецелой приверженностью Великобритании и Евросоюзу - страна может и ей даже следует иметь отношения с обеими сторонами. Начало переговоров с Евросоюзом &quot;подливает масла в огонь&quot;: курс GBPUSD резко уходит вниз."
 	},
 	{
 		"id": "7",
-		"interval": "2019-10-31",
-		"day": "31",
-		"month": "October",
-		"year": "2019",
-		"title": "MPS vote on Brexit deal",
-		"descr": "UK Parliament votes down amendments to the draft Brexit agreement that could have potentially paved way to an extension and a second referendum. Theresa May suffered the heaviest defeat in modern parliamentary history, losing 432 votes to 202."
+		"interval": "2017-1-17",
+		"day": "17",
+		"month": "января",
+		"year": "2017",
+		"title": "- &quot;Брекзит - значит Брекзит&quot;",
+		"descr": "Первая публичная речь Мэй открыла её позицию, которая стала известна как &quot;жёсткий Брекзит&quot;. В ней были подробно изложены состоящий из 12 этапов правительственный &quot;план для Британии&quot; и тема обсуждения границ, касающаяся членства в Европейском таможенном союзе."
+	},
+	{
+		"id": "8",
+		"interval": "2017-3-29",
+		"day": "29",
+		"month": "марта",
+		"year": "2017",
+		"title": "Предупреждение о возможной негативной реакции",
+		"descr": "Акт о выходе из Евросоюза получает королевское одобрение и Мэй инициирует статью 50 Лиссабонского договора о Евросоюзе, формально запуская двухгодовой отсчёт до даты выхода Великобритании из блока. Фунт перешёл к повышению из-за рыночной реакции, известной как &quot;Покупай на слухах, продавай на фактах&quot;."
+	},
+	{
+		"id": "9",
+		"interval": "2017-4-18",
+		"day": "18",
+		"month": "апреля",
+		"year": "2017",
+		"title": "Объявление всеобщих выборов",
+		"descr": "Премьер-министр призывает провести всеобщие выборы в июне 2017 года. Парламент одобрил предложение 522-ия голосами против 13-ти. Фунт резко пошёл вверх на слухах, что новые выборы укрепят позиции консерваторов и могут упростить процесс переговоров по Брекзиту."
+	},
+	{
+		"id": "10",
+		"interval": "2017-6-8",
+		"day": "8",
+		"month": "июня",
+		"year": "2017",
+		"title": "Внеочередные всеобщие выборы",
+		"descr": "В результате всеобщих выборов получается &quot;подвешенный&quot; парламент, в котором консерваторы доминируют с минимальным перевесом голосов. Потеряв большинство в парламенте, Мэй вынуждена заключить сделку с Демократической юнионистской партией, чтобы остаться у власти. EURGBP &quot;взлетает&quot;, получив новый удар из-за повышенной политической неопределённости."
+	},
+	{
+		"id": "11",
+		"interval": "2017-6-1",
+		"day": "1",
+		"month": "июня",
+		"year": "2017",
+		"title": "Переговоры",
+		"descr": "Переговоры о выходе из Евросоюза начались. Противоречивые новости давят на Фунт, но вскоре он возвращается к росту."
+	},
+	{
+		"id": "12",
+		"interval": "2017-12-8",
+		"day": "8",
+		"month": "июня",
+		"year": "2017",
+		"title": "Рождение &quot;ирландской границы&quot;",
+		"descr": "По результатам череды переговоров в Брюсселе стороны согласовывают сделку по так называемому &quot;британскому счёту за развод&quot;, включающую права граждан как Великобритании, так и Евросоюза, а также пресловутый &quot;североирландский рубеж&quot;."
 	}
 ]
