@@ -21,8 +21,8 @@ export default function (database) {
     let lineStr = ""
     let backgroundLineStr = ""
     let i = 0
-    let lastValue
-    let firstValue
+    let lastValue, firstValue
+
 
     database.reduce((last, curr) => {
         const coef = width / database.length;
@@ -40,15 +40,15 @@ export default function (database) {
         //Т.к. значение коэффициента и разница между несколько коэффициентами мала, то надо увеличить ее умножив все числа на 950. 
         //1530 - это положение графика внутри свг. Зависит от размера холста.
         if (i === 0) {
-            lineStr = `${lineStr} M ${coef} ${-curr.value * 950 + 1530} S`;
-            backgroundLineStr = `${backgroundLineStr} M ${coef} ${-curr.value * 950 + 1530} S`;
+            lineStr += `M ${coef} ${-curr.value * 950 + 1530} S`;
+            backgroundLineStr += `M ${coef} ${-curr.value * 950 + 1530} S`;
 
         } else {
-            lineStr = `${lineStr} ${i * (coef)} ${-curr.value  * 950 + 1530},`;
-            backgroundLineStr = `${backgroundLineStr} ${i * (coef)} ${-curr.value  * 950 + 1530},`;
+            lineStr += `${i * (coef)} ${-curr.value  * 950 + 1530},`;
+            backgroundLineStr += `${i * (coef)} ${-curr.value  * 950 + 1530},`;
         }
 
-        //Записать последние точки, чтобы можно было замкнуть график-фон, чтобы сделать заливку
+        //Записать последние точки, чтобы можно было сделать заливку цветом графику.
         if (i === database.length - 1) {
             firstValue = coef
             lastValue = i * (coef)
@@ -60,7 +60,7 @@ export default function (database) {
 
     }, undefined)
 
-    //замкнуть график-фон.
+    //Присовение аттрибута с графиком svg элементу.
     backgroundLineStr = `${backgroundLineStr} ${lastValue} 405, ${lastValue} 405 L ${firstValue} 405 Z`
     line.setAttribute("d", lineStr);
     background.setAttribute("d", backgroundLineStr)
@@ -80,13 +80,11 @@ function makeAxis() {
     axisX.setAttribute('y2', height - 26)
 }
 
-//! Создать переменные для элементов массива
-//Создать засечки 
+//Создать засечки на легенде графика
 function makeDash(i, date) {
     const dash = document.createElementNS('http://www.w3.org/2000/svg', 'line')
     date = date.map(el => parseInt(el))
     const [year, month, day] = date
-    console.log(typeof month)
 
     dash.classList.add('graph__dash')
     dash.classList.add('graph__dash--color')
@@ -100,7 +98,7 @@ function makeDash(i, date) {
         years.insertAdjacentElement('beforeend', setYear(i, year))
     }
 
-    if (month=== 5) {
+    if (month === 5) {
         years.insertAdjacentElement('beforeend', setYear(i, 'May'))
     }
 
@@ -124,8 +122,11 @@ function makeDash(i, date) {
     return dash
 }
 
-function makeInvisiblePoint(i, month) {
+
+//Сделать точку, к которой можно привязать событие, вне диапазона 
+function makeInvisiblePoint(i, date) {
     const dash = document.createElementNS('http://www.w3.org/2000/svg', 'line')
+    const [year, month, day] = date
 
     dash.classList.add('graph__dash')
     dash.setAttribute('x1', i)
@@ -134,13 +135,12 @@ function makeInvisiblePoint(i, month) {
     dash.setAttribute('y2', height - 26)
 
     dash.setAttribute('eventsCount', 0)
-
-    dash.setAttribute('interval', `${month[0]}-${parseInt(month[1])}-${parseInt(month[2])}`)
+    dash.setAttribute('interval', `${year}-${parseInt(month)}-${parseInt(day)}`)
 
     return dash
 }
 
-//Ф-ция создания элемента текст с началом года. Возможно, что стоит разбить на две функции. Сет ер и сет монф
+//Ф-ция создания тестовых значений годов на легенде графика
 function setYear(i, year) {
     const text = document.createElementNS('http://www.w3.org/2000/svg', 'text')
 
@@ -159,7 +159,7 @@ function setYear(i, year) {
     return text
 }
 
-//Взять базу событий
+//Загрузить базу events
 function getEvents() {
     const eventsList = fetch(eventsLink)
     eventsList.then(response => response.json())
@@ -176,12 +176,13 @@ function getEvents() {
         })
 }
 
-//! рефактор
+//Установить точку event га график
 function setEvent(event) {
     const interval = event.interval
     const id = event.id
     let point = graph.querySelector(`.graph__dash[interval='${interval}']`)
 
+    //Если event является событием вне отметки на графике
     if (!point) {
         point = setEventInIntervalDate(interval)
     }
@@ -194,6 +195,7 @@ function setEvent(event) {
 
     const rect = document.createElement('div')
 
+    //Если это первый event на этой отметке.
     if (eventsCount === 1) {
         rect.classList.add('graph__event--first')
         rect.setAttribute('style', `transform: translate(${pointX - 4}px, ${pointY - 10}px)`)
@@ -211,22 +213,24 @@ function setEvent(event) {
 
 function makeLastEventActive() {
     const eventsArr = graph.querySelectorAll('.graph__event')
-    const event = eventsArr[eventsArr.length - 1]
-    const id = event.getAttribute('event-id')
-    const eventInfo = eventsDatabase.cards.find(elem => elem.id === id)
+    const lastEvent = eventsArr[eventsArr.length - 1]
+    const id =  lastEvent.getAttribute('event-id')
+    const eventInfo = eventsDatabase.cards.find(el => el.id === id)
 
-    event.classList.add(active)
-    changeEvent(eventInfo, event)
+    lastEvent.classList.add(active)
+    changeEvent(eventInfo,  lastEvent)
 }
 
+//Открыть эвент при нажатии на точку
 function openEvent() {
     const id = this.getAttribute('event-id')
-    const event = eventsDatabase.cards.find(elem => elem.id === id)
+    const event = eventsDatabase.cards.find(el => el.id === id)
 
     changeActiveEvent(this)
     changeEvent(event, this)
 }
-//! Зарефакторить
+
+//Функция по определения отметки для точки, лежащей вне даты конца биржевой недели
 function setEventInIntervalDate(interval) {
     const splitted = interval.split('-')
     const date = parseInt(splitted.join(''))
@@ -262,6 +266,7 @@ function setEventInIntervalDate(interval) {
     }
 }
 
+//Сдвинуть графика вправо на мобильной разрешении
 function changeGraphViewPosition() {
     scroll.scrollLeft = width - windowWidth
 }
