@@ -16,7 +16,7 @@ body {
 
     &__overflow {
         height: 100%;
-        padding-bottom: 10px;
+        padding: 60px 0 10px;
     }
 
     &__container {
@@ -155,7 +155,7 @@ body {
             z-index: 2;
 
             &:not(.graph__event--first) {
-                z-index: 7;
+                z-index: 4;
             }
 
             &::after {
@@ -229,7 +229,7 @@ body {
     }
 
     &__container {
-        max-width: 480px;
+        max-width: 640px;
         margin-left: auto;
 
         text-align: right;
@@ -285,7 +285,7 @@ body {
         margin-top: 0.16666666666em;
 
         font-size: 30px;
-        line-height: 1.33333333333;
+        line-height: 1.1;
         font-weight: 300;
         color: #000;
     }

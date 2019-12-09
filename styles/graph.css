@@ -16,7 +16,7 @@ body {
 
 .graph__overflow {
   height: 100%;
-  padding-bottom: 10px;
+  padding: 60px 0 10px;
 }
 
 .graph__container {
@@ -146,7 +146,7 @@ body {
 }
 
 .graph__event.graph__event--active:not(.graph__event--first) {
-  z-index: 7;
+  z-index: 4;
 }
 
 .graph__event.graph__event--active::after {
@@ -221,7 +221,7 @@ body {
 }
 
 .slider__container {
-  max-width: 480px;
+  max-width: 640px;
   margin-left: auto;
   text-align: right;
 }
@@ -269,7 +269,7 @@ body {
   margin-bottom: 0.56666666666em;
   margin-top: 0.16666666666em;
   font-size: 30px;
-  line-height: 1.33333333333;
+  line-height: 1.1;
   font-weight: 300;
   color: #000;
 }
